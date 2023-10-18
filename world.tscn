@@ -1,3 +1,85 @@
-[gd_scene format=3 uid="uid://bdq53e5pruu30"]
+[gd_scene load_steps=7 format=3 uid="uid://bdq53e5pruu30"]
 
-[node name="World" type="Node3D"]
+[ext_resource type="PackedScene" uid="uid://bt3r6acr1yigw" path="res://counter.tscn" id="1_se0sy"]
+[ext_resource type="PackedScene" uid="uid://bleqbt5f1cfj2" path="res://player.tscn" id="2_67di5"]
+[ext_resource type="PackedScene" uid="uid://bkvaulrs1r1hh" path="res://Wall.tscn" id="3_k5xnp"]
+[ext_resource type="PackedScene" uid="uid://c4o2oeg7qaqra" path="res://key.tscn" id="4_yhvyk"]
+[ext_resource type="PackedScene" uid="uid://cekupbly21xte" path="res://planet.tscn" id="5_mg2u4"]
+
+[sub_resource type="Environment" id="Environment_kskn3"]
+background_mode = 1
+background_color = Color(0.0352941, 0.0235294, 0.129412, 1)
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+volumetric_fog_density = 0.031
+volumetric_fog_albedo = Color(0.819608, 1, 1, 1)
+volumetric_fog_emission = Color(0.760784, 0.760784, 0.760784, 1)
+adjustment_enabled = true
+adjustment_saturation = 1.7
+
+[node name="Node3D" type="Node3D"]
+
+[node name="counter" parent="." instance=ExtResource("1_se0sy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.219111, -2.86102e-06, 0)
+
+[node name="counter2" parent="." instance=ExtResource("1_se0sy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 3.17094, 0.219111, -2.86102e-06, 8)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_kskn3")
+
+[node name="wall" parent="." instance=ExtResource("3_k5xnp")]
+transform = Transform3D(5.02961, 0, 0, 0, 5.02961, 0, 0, 0, 5.02961, -6.30057, 4.5296, -5.23125)
+
+[node name="wall7" parent="." instance=ExtResource("3_k5xnp")]
+transform = Transform3D(-2.05287e-07, -1.80016, 4.69643, -7.86872e-08, 4.69643, 1.80016, -5.02961, 0, -2.19851e-07, -17.4269, 4.5296, -1.07078)
+
+[node name="wall11" parent="." instance=ExtResource("3_k5xnp")]
+transform = Transform3D(-2.05287e-07, -1.80016, 4.69643, -7.86872e-08, 4.69643, 1.80016, -5.02961, 0, -2.19851e-07, -17.4269, 4.5296, 6.92922)
+
+[node name="wall2" parent="." instance=ExtResource("3_k5xnp")]
+transform = Transform3D(5.02961, 0, 0, 0, 5.02961, 0, 0, 0, 5.02961, -5.44469, 4.5296, 3.2855)
+
+[node name="wall3" parent="." instance=ExtResource("3_k5xnp")]
+transform = Transform3D(5.02961, 0, 0, 0, 5.02961, 0, 0, 0, 5.02961, 1.69943, 4.5296, -5.23125)
+
+[node name="wall8" parent="." instance=ExtResource("3_k5xnp")]
+transform = Transform3D(5.02961, 0, 0, 0, 5.02961, 0, 0, 0, 5.02961, -6.30057, 4.5296, 20.7687)
+
+[node name="wall9" parent="." instance=ExtResource("3_k5xnp")]
+transform = Transform3D(5.02961, 0, 0, 0, 5.02961, 0, 0, 0, 5.02961, 1.69943, 4.5296, 20.7687)
+
+[node name="wall10" parent="." instance=ExtResource("3_k5xnp")]
+transform = Transform3D(5.02961, 0, 0, 0, 5.02961, 0, 0, 0, 5.02961, 9.69943, 4.5296, 20.7687)
+
+[node name="wall4" parent="." instance=ExtResource("3_k5xnp")]
+transform = Transform3D(5.02961, 0, 0, 0, 5.02961, 0, 0, 0, 5.02961, 2.55531, 4.5296, 3.2855)
+
+[node name="Key" parent="." instance=ExtResource("4_yhvyk")]
+transform = Transform3D(-0.12941, 0, -0.482963, 0, 0.5, 0, 0.482963, 0, -0.12941, 3.80377, 2.67529, 6.78614)
+
+[node name="Planet" parent="." instance=ExtResource("5_mg2u4")]
+transform = Transform3D(9.28453, 0, 0, 0, 9.28453, 0, 0, 0, 9.28453, 5.04043, 9.46501, -2.44987)
+
+[node name="Player" parent="." instance=ExtResource("2_67di5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.63795, 2.93926, -0.996012)
+
+[node name="Chicky" parent="Player" index="8"]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, 0)
+
+[node name="Body" parent="Player/Chicky" index="2"]
+transform = Transform3D(0.163185, 0, 0, 0, -5.90728e-07, -0.163185, 0, 0.163185, -5.90728e-07, 0, 0.0719677, 0.652636)
+
+[node name="Sunfglasses" parent="Player/Chicky" index="3"]
+transform = Transform3D(-0.361165, 0, -8.41987e-08, 0, 0.143775, 0, 9.15619e-07, 0, -0.0332121, 0, 0.20215, 0.585584)
+
+[node name="HairTuft" parent="Player/Chicky" index="4"]
+transform = Transform3D(0.0192671, 0, 0.0651637, 0, 0.035763, 0, -0.0275163, 0, 0.0456281, 0, 0.753276, 0)
+
+[node name="LeftFoot" parent="Player/Chicky" index="5"]
+transform = Transform3D(-1.46044e-06, 0, 0.22811, 0, 0.14204, 0, -0.403438, 0, -8.25756e-07, -0.2, -0.740101, 0)
+
+[node name="RightFoot" parent="Player/Chicky" index="6"]
+transform = Transform3D(-1.46044e-06, 0, 0.22811, 0, 0.14204, 0, -0.403438, 0, -8.25756e-07, 0.2, -0.740101, 0)
+
+[editable path="Player"]
