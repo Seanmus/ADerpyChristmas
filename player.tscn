@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bleqbt5f1cfj2"]
+[gd_scene load_steps=29 format=3 uid="uid://bleqbt5f1cfj2"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_fuj54"]
 [ext_resource type="PackedScene" uid="uid://d4alr58co4efe" path="res://BlenderMeshes/Derpy.fbx" id="2_6d2vt"]
@@ -7,11 +7,6 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_lgsit"]
 radius = 0.615924
-
-[sub_resource type="Animation" id="Animation_t2lf3"]
-resource_name = "Hover"
-length = 0.2
-loop_mode = 1
 
 [sub_resource type="Animation" id="Animation_pwx0c"]
 resource_name = "InAir"
@@ -24,10 +19,22 @@ tracks/0/path = NodePath("Derpy/RootNode/LeftWing_001:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(-1.5708, 6.51683e-07, 0)]
+"values": [Vector3(-1.5708, 6.51683e-07, 0), Vector3(-0.671166, 1.5708, -1.5708), Vector3(-1.5708, 6.51683e-07, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Derpy/RootNode/LeftWing:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.5708, -3.14159, 0), Vector3(-0.592103, -1.57079, -1.5708), Vector3(-1.5708, -3.14159, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_heg8d"]
@@ -598,9 +605,38 @@ tracks/13/keys = {
 "values": [Vector3(-1.52421, 1.90023e-10, -3.14159), Vector3(0.0292203, 9.50608e-12, -3.14159), Vector3(-1.52421, 1.90023e-10, -3.14159)]
 }
 
+[sub_resource type="Animation" id="Animation_eo3mg"]
+resource_name = "Hover"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Derpy/RootNode/LeftWing_001:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.5708, 6.51683e-07, 0), Vector3(-0.671166, 1.5708, -1.5708), Vector3(-1.5708, 6.51683e-07, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Derpy/RootNode/LeftWing:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.5708, -3.14159, 0), Vector3(-0.592103, -1.57079, -1.5708), Vector3(-1.5708, -3.14159, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0csh3"]
 _data = {
-"Hover": SubResource("Animation_t2lf3"),
+"Hover": SubResource("Animation_eo3mg"),
 "InAir": SubResource("Animation_pwx0c"),
 "Jump": SubResource("Animation_heg8d"),
 "Land": SubResource("Animation_m41vt"),
@@ -642,9 +678,11 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rxvs8"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7y4yr"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_uy886"]
 states/Hover/node = SubResource("AnimationNodeAnimation_xvg6f")
-states/Hover/position = Vector2(819, 297)
+states/Hover/position = Vector2(914, 279)
 states/InAir/node = SubResource("AnimationNodeAnimation_oljhs")
 states/InAir/position = Vector2(703, 239)
 states/Jump/node = SubResource("AnimationNodeAnimation_vraha")
@@ -653,8 +691,8 @@ states/Land/node = SubResource("AnimationNodeAnimation_juv8b")
 states/Land/position = Vector2(703, 377)
 states/Walk/node = SubResource("AnimationNodeAnimation_3eyxj")
 states/Walk/position = Vector2(493, 168)
-transitions = ["Start", "Walk", SubResource("AnimationNodeStateMachineTransition_lsbma"), "Walk", "Jump", SubResource("AnimationNodeStateMachineTransition_0a6jd"), "Land", "Walk", SubResource("AnimationNodeStateMachineTransition_37vwb"), "Jump", "InAir", SubResource("AnimationNodeStateMachineTransition_2vkgr"), "InAir", "Land", SubResource("AnimationNodeStateMachineTransition_y4xjk"), "InAir", "Hover", SubResource("AnimationNodeStateMachineTransition_ww54o"), "Hover", "Land", SubResource("AnimationNodeStateMachineTransition_rxvs8")]
-graph_offset = Vector2(-102, 55)
+transitions = ["Start", "Walk", SubResource("AnimationNodeStateMachineTransition_lsbma"), "Walk", "Jump", SubResource("AnimationNodeStateMachineTransition_0a6jd"), "Land", "Walk", SubResource("AnimationNodeStateMachineTransition_37vwb"), "Jump", "InAir", SubResource("AnimationNodeStateMachineTransition_2vkgr"), "InAir", "Land", SubResource("AnimationNodeStateMachineTransition_y4xjk"), "InAir", "Hover", SubResource("AnimationNodeStateMachineTransition_ww54o"), "Hover", "Land", SubResource("AnimationNodeStateMachineTransition_rxvs8"), "Hover", "InAir", SubResource("AnimationNodeStateMachineTransition_7y4yr")]
+graph_offset = Vector2(-218, 201)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_vixcg"]
 radius = 1.0

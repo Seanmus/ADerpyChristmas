@@ -1,13 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://88onn8hv3t5n"]
+[gd_scene load_steps=3 format=3 uid="uid://p2rk8aay02nd"]
 
-[ext_resource type="PackedScene" uid="uid://u6wcxr54006s" path="res://BlenderMeshes/winterTree.fbx" id="1_mfoh5"]
+[ext_resource type="PackedScene" uid="uid://dwolldowxfs7n" path="res://BlenderMeshes/snowMan.fbx" id="1_euvey"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oe0f0"]
-radius = 1.0
-height = 4.57253
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_kylmy"]
+height = 3.8592
+radius = 1.16686
 
-[node name="snowMan" instance=ExtResource("1_mfoh5")]
+[node name="snowMan" instance=ExtResource("1_euvey")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.10269, 0)
-shape = SubResource("CapsuleShape3D_oe0f0")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34148, 0)
+shape = SubResource("CylinderShape3D_kylmy")

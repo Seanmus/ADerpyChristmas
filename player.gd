@@ -3,9 +3,14 @@ extends CharacterBody3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 6
+const HOVERFALLVELOCITY = -2.5
 var mouse_sensitivty = 0.002
 var wasInAir
 var stuckOnWall
+
+
+@onready var spawnPos = position
+
 @onready var anim = $AnimationPlayer
 @onready var animationTree = $AnimationTree
 @onready var animationState = animationTree.get("parameters/playback")
@@ -26,9 +31,13 @@ func _unhandled_input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(-event.relative.x * mouse_sensitivty)
 		$Pivot.rotate_x(-event.relative.y * mouse_sensitivty)
-		$Pivot.rotation.x = clamp($Pivot.rotation.x, -0.9, -0.1)
+		$Pivot.rotation.x = clamp($Pivot.rotation.x, -0.9, 0)
 
 func _physics_process(delta):
+	if position.y < -20:
+		position = spawnPos
+	
+	
 	# Add the gravity.
 	if not is_on_floor() && not stuckOnWall:
 		wasInAir = true
@@ -37,7 +46,7 @@ func _physics_process(delta):
 			velocity.y -= gravity * 0.5 * delta
 		velocity.y -= gravity * delta
 		if Input.is_action_pressed("jump") and velocity.y < 0:
-			velocity.y = clamp(velocity.y, -3, 0)
+			velocity.y = clamp(velocity.y, HOVERFALLVELOCITY, 0)
 			
 	if is_on_floor():
 		if wasInAir:
@@ -52,8 +61,11 @@ func _physics_process(delta):
 		stuckOnWall = false
 		jumpEffect.play()
 	
-	if Input.is_action_just_pressed("jump") and not is_on_floor():
-		animationState.travel("Hover")
+	if not is_on_floor():
+		if Input.is_action_just_pressed("jump"):
+			animationState.travel("Hover")
+		elif Input.is_action_just_released("jump"):
+			animationState.travel("InAir")
 	
 	if is_on_wall() and Input.is_action_just_pressed("jump"):
 		velocity.y = JUMP_VELOCITY
