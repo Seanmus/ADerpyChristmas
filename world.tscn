@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bdq53e5pruu30"]
+[gd_scene load_steps=8 format=3 uid="uid://bdq53e5pruu30"]
 
-[ext_resource type="PackedScene" uid="uid://bt3r6acr1yigw" path="res://counter.tscn" id="1_se0sy"]
 [ext_resource type="PackedScene" uid="uid://bleqbt5f1cfj2" path="res://player.tscn" id="2_67di5"]
-[ext_resource type="PackedScene" uid="uid://bkvaulrs1r1hh" path="res://Wall.tscn" id="3_k5xnp"]
 [ext_resource type="PackedScene" uid="uid://c4o2oeg7qaqra" path="res://key.tscn" id="4_yhvyk"]
-[ext_resource type="PackedScene" uid="uid://cekupbly21xte" path="res://planet.tscn" id="5_mg2u4"]
+[ext_resource type="PackedScene" uid="uid://bdyyk6uwj022r" path="res://LevelAssets/present.tscn" id="5_86g65"]
+[ext_resource type="PackedScene" uid="uid://cvqq628c8eb0i" path="res://LevelAssets/winter_tree.tscn" id="5_qyr14"]
+[ext_resource type="PackedScene" uid="uid://toaqihy6veuo" path="res://LevelAssets/snow_block.tscn" id="5_s6s7i"]
+[ext_resource type="PackedScene" uid="uid://c02lle0fs3pqb" path="res://LevelAssets/icicle.tscn" id="6_0onkk"]
 
 [sub_resource type="Environment" id="Environment_kskn3"]
 background_mode = 1
@@ -17,69 +18,64 @@ volumetric_fog_emission = Color(0.760784, 0.760784, 0.760784, 1)
 adjustment_enabled = true
 adjustment_saturation = 1.7
 
-[node name="Node3D" type="Node3D"]
-
-[node name="counter" parent="." instance=ExtResource("1_se0sy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.219111, -2.86102e-06, 0)
-
-[node name="counter2" parent="." instance=ExtResource("1_se0sy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 3.17094, 0.219111, -2.86102e-06, 8)
+[node name="World1" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_kskn3")
 
-[node name="wall" parent="." instance=ExtResource("3_k5xnp")]
-transform = Transform3D(5.02961, 0, 0, 0, 5.02961, 0, 0, 0, 5.02961, -6.30057, 4.5296, -5.23125)
-
-[node name="wall7" parent="." instance=ExtResource("3_k5xnp")]
-transform = Transform3D(-2.05287e-07, -1.80016, 4.69643, -7.86872e-08, 4.69643, 1.80016, -5.02961, 0, -2.19851e-07, -17.4269, 4.5296, -1.07078)
-
-[node name="wall11" parent="." instance=ExtResource("3_k5xnp")]
-transform = Transform3D(-2.05287e-07, -1.80016, 4.69643, -7.86872e-08, 4.69643, 1.80016, -5.02961, 0, -2.19851e-07, -17.4269, 4.5296, 6.92922)
-
-[node name="wall2" parent="." instance=ExtResource("3_k5xnp")]
-transform = Transform3D(5.02961, 0, 0, 0, 5.02961, 0, 0, 0, 5.02961, -5.44469, 4.5296, 3.2855)
-
-[node name="wall3" parent="." instance=ExtResource("3_k5xnp")]
-transform = Transform3D(5.02961, 0, 0, 0, 5.02961, 0, 0, 0, 5.02961, 1.69943, 4.5296, -5.23125)
-
-[node name="wall8" parent="." instance=ExtResource("3_k5xnp")]
-transform = Transform3D(5.02961, 0, 0, 0, 5.02961, 0, 0, 0, 5.02961, -6.30057, 4.5296, 20.7687)
-
-[node name="wall9" parent="." instance=ExtResource("3_k5xnp")]
-transform = Transform3D(5.02961, 0, 0, 0, 5.02961, 0, 0, 0, 5.02961, 1.69943, 4.5296, 20.7687)
-
-[node name="wall10" parent="." instance=ExtResource("3_k5xnp")]
-transform = Transform3D(5.02961, 0, 0, 0, 5.02961, 0, 0, 0, 5.02961, 9.69943, 4.5296, 20.7687)
-
-[node name="wall4" parent="." instance=ExtResource("3_k5xnp")]
-transform = Transform3D(5.02961, 0, 0, 0, 5.02961, 0, 0, 0, 5.02961, 2.55531, 4.5296, 3.2855)
-
 [node name="Key" parent="." instance=ExtResource("4_yhvyk")]
 transform = Transform3D(-0.12941, 0, -0.482963, 0, 0.5, 0, 0.482963, 0, -0.12941, 3.80377, 2.67529, 6.78614)
-
-[node name="Planet" parent="." instance=ExtResource("5_mg2u4")]
-transform = Transform3D(9.28453, 0, 0, 0, 9.28453, 0, 0, 0, 9.28453, 5.04043, 9.46501, -2.44987)
 
 [node name="Player" parent="." instance=ExtResource("2_67di5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.63795, 2.93926, -0.996012)
 
-[node name="Chicky" parent="Player" index="8"]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, 0)
+[node name="LeftWing" parent="Player/Derpy/RootNode" index="0"]
+transform = Transform3D(-22.0247, 8.98357e-05, 4.11459e-10, 0, -0.000128277, 44.8343, 5.58366e-05, 35.4356, 0.0001623, 0.6, 0.256785, -4.71597e-08)
 
-[node name="Body" parent="Player/Chicky" index="2"]
-transform = Transform3D(0.163185, 0, 0, 0, -5.90728e-07, -0.163185, 0, 0.163185, -5.90728e-07, 0, 0.0719677, 0.652636)
+[node name="Sunfglasses" parent="Player/Derpy/RootNode" index="1"]
+transform = Transform3D(36.1155, -0.0231852, 1.20616e-05, -3.1186e-05, -1.16757e-05, 14.3775, -0.252127, -3.32113, -5.06295e-05, -5.21184e-08, 0.3838, -0.596165)
 
-[node name="Sunfglasses" parent="Player/Chicky" index="3"]
-transform = Transform3D(-0.361165, 0, -8.41987e-08, 0, 0.143775, 0, 9.15619e-07, 0, -0.0332121, 0, 0.20215, 0.585584)
+[node name="HairTuft" parent="Player/Derpy/RootNode" index="2"]
+transform = Transform3D(-1.68556, 4.70528, 1.06049e-05, 0, -2.07935e-05, 3.5763, 2.40723, 3.29466, 7.4256e-06, 0, 0.781998, 0)
 
-[node name="HairTuft" parent="Player/Chicky" index="4"]
-transform = Transform3D(0.0192671, 0, 0.0651637, 0, 0.035763, 0, -0.0275163, 0, 0.0456281, 0, 0.753276, 0)
+[node name="LeftFoot" parent="Player/Derpy/RootNode" index="3"]
+transform = Transform3D(-0.000146044, 22.811, 5.14183e-05, 0, -8.25756e-05, 14.204, 40.3438, 8.25756e-05, 1.86134e-10, 0.2, -0.513494, -1.74846e-08)
 
-[node name="LeftFoot" parent="Player/Chicky" index="5"]
-transform = Transform3D(-1.46044e-06, 0, 0.22811, 0, 0.14204, 0, -0.403438, 0, -8.25756e-07, -0.2, -0.740101, 0)
+[node name="RightFoot" parent="Player/Derpy/RootNode" index="4"]
+transform = Transform3D(-0.000146044, 22.811, 5.14183e-05, 0, -8.25756e-05, 14.204, 40.3438, 8.25756e-05, 1.86134e-10, -0.2, -0.513494, 1.74846e-08)
 
-[node name="RightFoot" parent="Player/Chicky" index="6"]
-transform = Transform3D(-1.46044e-06, 0, 0.22811, 0, 0.14204, 0, -0.403438, 0, -8.25756e-07, 0.2, -0.740101, 0)
+[node name="LeftWing_001" parent="Player/Derpy/RootNode" index="5"]
+transform = Transform3D(22.0247, -2.30927e-05, -1.05768e-10, 0, -0.000128276, 44.8343, -1.43531e-05, -35.4355, -0.0001623, -0.6, 0.256785, 5.77477e-08)
+
+[node name="Body_001" parent="Player/Derpy/RootNode" index="6"]
+transform = Transform3D(-16.3185, -1.53301e-12, -4.13704e-05, -1.99845e-15, 13.8185, -7.13304e-07, 4.13704e-05, -6.04026e-07, -16.3185, -5.70553e-08, 0.214111, -0.652636)
+
+[node name="present" parent="." instance=ExtResource("5_86g65")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.49171, 0.952484, 12.4468)
+
+[node name="present2" parent="." instance=ExtResource("5_86g65")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.58804, 1.26386, 15.2252)
+
+[node name="present3" parent="." instance=ExtResource("5_86g65")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.28656, 1.26386, 10.0173)
+
+[node name="present4" parent="." instance=ExtResource("5_86g65")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6069, 1.26386, 10.4562)
+
+[node name="present5" parent="." instance=ExtResource("5_86g65")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.37819, 1.26386, 17.802)
+
+[node name="winterTree" parent="." instance=ExtResource("5_qyr14")]
+transform = Transform3D(4.49043, 0, 0, 0, 4.49043, 0, 0, 0, 4.49043, 4.94017, 9.17006, 13.2491)
+
+[node name="SnowBlock" parent="." instance=ExtResource("5_s6s7i")]
+transform = Transform3D(8.55827, 0, 0, 0, 1.88644, 0, 0, 0, 10.3943, -7.39615, -1.42296, -0.0104618)
+
+[node name="icicle" parent="." instance=ExtResource("6_0onkk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.17017, 0.615864, -7.55948)
+
+[node name="icicle2" parent="." instance=ExtResource("6_0onkk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.20937, 0.615865, -0.927823)
 
 [editable path="Player"]
+[editable path="Player/Derpy"]

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://88onn8hv3t5n"]
+
+[ext_resource type="PackedScene" uid="uid://u6wcxr54006s" path="res://BlenderMeshes/winterTree.fbx" id="1_mfoh5"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oe0f0"]
+radius = 1.0
+height = 4.57253
+
+[node name="snowMan" instance=ExtResource("1_mfoh5")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.10269, 0)
+shape = SubResource("CapsuleShape3D_oe0f0")

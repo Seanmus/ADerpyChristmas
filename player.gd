@@ -12,9 +12,8 @@ var stuckOnWall
 
 @onready var landEffect = $JumpEffect
 @onready var jumpEffect = $JumpEffect
-@onready var stickEffect = $StickEffect
 
-@onready var derpy = $Chicky
+@onready var derpy = $Derpy
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -26,15 +25,20 @@ func _ready():
 func _unhandled_input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(-event.relative.x * mouse_sensitivty)
+		$Pivot.rotate_x(-event.relative.y * mouse_sensitivty)
+		$Pivot.rotation.x = clamp($Pivot.rotation.x, -0.9, -0.1)
 
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor() && not stuckOnWall:
 		wasInAir = true
+
 		if velocity.y < 0:
 			velocity.y -= gravity * 0.5 * delta
 		velocity.y -= gravity * delta
-
+		if Input.is_action_pressed("jump") and velocity.y < 0:
+			velocity.y = clamp(velocity.y, -3, 0)
+			
 	if is_on_floor():
 		if wasInAir:
 			animationState.travel("Land")
@@ -50,6 +54,9 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("jump") and not is_on_floor():
 		animationState.travel("Hover")
+	
+	if is_on_wall() and Input.is_action_just_pressed("jump"):
+		velocity.y = JUMP_VELOCITY
 		
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -90,8 +97,8 @@ func _physics_process(delta):
 func _on_sticky_area_entered(body):
 	if(body.is_in_group("wall")):
 		print(body.rotation)
-		stickEffect.play()
-		stuckOnWall = true
+		#stickEffect.play()
+		#tuckOnWall = true
 
 
 func _on_area_3d_body_exited(body):
