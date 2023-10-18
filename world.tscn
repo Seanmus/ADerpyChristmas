@@ -8,23 +8,21 @@
 [ext_resource type="PackedScene" uid="uid://toaqihy6veuo" path="res://LevelAssets/snow_block.tscn" id="5_s6s7i"]
 [ext_resource type="PackedScene" uid="uid://c02lle0fs3pqb" path="res://LevelAssets/icicle.tscn" id="6_0onkk"]
 [ext_resource type="PackedScene" uid="uid://bxit1nfe7bfp8" path="res://MovingPlatform.tscn" id="7_hbycc"]
-[ext_resource type="PackedScene" uid="uid://p2rk8aay02nd" path="res://LevelAssets/snow_man.tscn" id="8_lf6ng"]
+[ext_resource type="PackedScene" uid="uid://d4ljevw7hy3s5" path="res://LevelAssets/snow_man.tscn" id="8_lf6ng"]
 [ext_resource type="PackedScene" uid="uid://b1qsgqyhc51wh" path="res://LevelAssets/bounce_pad.tscn" id="10_5kqxk"]
 [ext_resource type="PackedScene" uid="uid://c2itevfqko5w1" path="res://LevelAssets/tree_log.tscn" id="11_telt1"]
 
 [sub_resource type="Environment" id="Environment_kskn3"]
 background_mode = 1
 background_color = Color(0.0352941, 0.0235294, 0.129412, 1)
-background_energy_multiplier = 1.4
+background_energy_multiplier = 1.93
 ambient_light_source = 2
 ambient_light_color = Color(0.933333, 1, 1, 1)
-ambient_light_energy = 1.3
 volumetric_fog_density = 0.031
 volumetric_fog_albedo = Color(0.819608, 1, 1, 1)
 volumetric_fog_emission = Color(0.760784, 0.760784, 0.760784, 1)
 adjustment_enabled = true
-adjustment_contrast = 1.23
-adjustment_saturation = 2.85
+adjustment_saturation = 2.79
 
 [node name="World1" type="Node3D"]
 
@@ -83,9 +81,6 @@ transform = Transform3D(-1.68556, 4.70528, 1.06049e-05, 0, -2.07935e-05, 3.5763,
 
 [node name="LeftWing_001" parent="Player/Derpy/RootNode" index="5"]
 transform = Transform3D(22.0247, -2.30927e-05, -1.05768e-10, 0, -0.000128276, 44.8343, -1.43531e-05, -35.4355, -0.0001623, -0.6, 0.256785, 5.77477e-08)
-
-[node name="Body_001" parent="Player/Derpy/RootNode" index="6"]
-transform = Transform3D(-16.3185, -1.53301e-12, -4.13704e-05, -1.99845e-15, 13.8185, -7.13304e-07, 4.13704e-05, -6.04026e-07, -16.3185, -5.70553e-08, 0.214111, -0.652636)
 
 [node name="Camera3D" parent="Player/Pivot/SpringArm3D" index="0"]
 current = true
@@ -183,7 +178,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96.673, 20.2337, -44.6827)
 transform = Transform3D(3.74102, -3.2705e-07, 3.34274, -4.3859e-07, -5.01688, 1.01644e-20, 3.34274, -2.92232e-07, -3.74102, 93, 19, -59)
 
 [node name="icicle3" parent="." instance=ExtResource("6_0onkk")]
-transform = Transform3D(3.74102, -3.2705e-07, 3.34274, -4.3859e-07, -5.01688, 1.01644e-20, 3.34274, -2.92232e-07, -3.74102, 4, 1, -52)
+transform = Transform3D(3.74102, -3.2705e-07, 3.34274, -4.3859e-07, -5.01688, 1.01644e-20, 3.34274, -2.92232e-07, -3.74102, 5.23017, 4.16017, -52)
 
 [node name="icicle2" parent="." instance=ExtResource("6_0onkk")]
 transform = Transform3D(3.74102, -3.2705e-07, 3.34274, -4.3859e-07, -5.01688, 1.01644e-20, 3.34274, -2.92232e-07, -3.74102, 93, 23, -27)

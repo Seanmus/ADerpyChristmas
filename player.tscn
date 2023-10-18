@@ -1,12 +1,43 @@
-[gd_scene load_steps=29 format=3 uid="uid://bleqbt5f1cfj2"]
+[gd_scene load_steps=32 format=3 uid="uid://bleqbt5f1cfj2"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_fuj54"]
 [ext_resource type="PackedScene" uid="uid://d4alr58co4efe" path="res://BlenderMeshes/Derpy.fbx" id="2_6d2vt"]
 [ext_resource type="AudioStream" uid="uid://cioo4m7rbfyo7" path="res://Audio/LandSqueakReSaved.mp3" id="2_m6w0e"]
 [ext_resource type="AudioStream" uid="uid://bpi0kkuimqum1" path="res://Audio/JumpSqueak.wav" id="3_ed4i6"]
+[ext_resource type="Texture2D" uid="uid://b6gbq2av8pect" path="res://UI/PresentCrunchy.png" id="5_1a8fc"]
+[ext_resource type="FontFile" uid="uid://bpvljw3t441k7" path="res://UI/SigmarOne-Regular.ttf" id="6_hpwsy"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_lgsit"]
 radius = 0.615924
+
+[sub_resource type="Animation" id="Animation_eo3mg"]
+resource_name = "Hover"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Derpy/RootNode/LeftWing_001:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.5708, 6.51683e-07, 0), Vector3(-0.671166, 1.5708, -1.5708), Vector3(-1.5708, 6.51683e-07, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Derpy/RootNode/LeftWing:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.5708, -3.14159, 0), Vector3(-0.592103, -1.57079, -1.5708), Vector3(-1.5708, -3.14159, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_pwx0c"]
 resource_name = "InAir"
@@ -605,35 +636,6 @@ tracks/13/keys = {
 "values": [Vector3(-1.52421, 1.90023e-10, -3.14159), Vector3(0.0292203, 9.50608e-12, -3.14159), Vector3(-1.52421, 1.90023e-10, -3.14159)]
 }
 
-[sub_resource type="Animation" id="Animation_eo3mg"]
-resource_name = "Hover"
-length = 0.2
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Derpy/RootNode/LeftWing_001:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(-1.5708, 6.51683e-07, 0), Vector3(-0.671166, 1.5708, -1.5708), Vector3(-1.5708, 6.51683e-07, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Derpy/RootNode/LeftWing:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(-1.5708, -3.14159, 0), Vector3(-0.592103, -1.57079, -1.5708), Vector3(-1.5708, -3.14159, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0csh3"]
 _data = {
 "Hover": SubResource("Animation_eo3mg"),
@@ -699,6 +701,10 @@ radius = 1.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5ax8n"]
 
+[sub_resource type="Theme" id="Theme_4pgsk"]
+default_font = ExtResource("6_hpwsy")
+default_font_size = 64
+
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_fuj54")
 
@@ -757,6 +763,32 @@ spring_length = 6.12
 
 [node name="Camera3D" type="Camera3D" parent="Pivot/SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.892117, 2.49008)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 0.995
+offset_right = 2.0
+offset_bottom = 0.239929
+mouse_filter = 2
+
+[node name="PresentSprite" type="Sprite2D" parent="UI"]
+position = Vector2(1084, 61)
+texture = ExtResource("5_1a8fc")
+
+[node name="Label" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.728
+anchor_top = 0.018
+anchor_right = 0.923
+anchor_bottom = 0.171
+offset_left = -0.112061
+offset_top = -10.61
+offset_right = -0.14209
+offset_bottom = -0.295006
+theme = SubResource("Theme_4pgsk")
+text = "0/3"
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_sticky_area_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
