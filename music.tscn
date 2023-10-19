@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://wqhwlc0yg76x"]
+
+[ext_resource type="AudioStream" uid="uid://delh3sf3uem4x" path="res://Audio/PP_Destiny_FULL_Loop.wav" id="1_5bwme"]
+
+[node name="Music" type="AudioStreamPlayer"]
+stream = ExtResource("1_5bwme")
+volume_db = -11.97
+autoplay = true

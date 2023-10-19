@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4o2oeg7qaqra"]
+
+[ext_resource type="Script" path="res://Interactables/key.gd" id="1_cgrvu"]
+[ext_resource type="PackedScene" uid="uid://bf1qrxdc0107b" path="res://BlenderMeshes/key.blend" id="2_2j63i"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_k2o4g"]
+radius = 1.5006
+height = 5.24847
+
+[node name="Key" type="Area3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+script = ExtResource("1_cgrvu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1.59691, 0, 0)
+shape = SubResource("CapsuleShape3D_k2o4g")
+
+[node name="key" parent="." instance=ExtResource("2_2j63i")]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody3D
 
 
@@ -6,8 +7,6 @@ const JUMP_VELOCITY = 6
 const HOVERFALLVELOCITY = -2.5
 var mouse_sensitivty = 0.002
 var wasInAir
-var stuckOnWall
-
 
 @onready var spawnPos = position
 
@@ -17,15 +16,39 @@ var stuckOnWall
 
 @onready var landEffect = $JumpEffect
 @onready var jumpEffect = $JumpEffect
+@onready var presentCollect = $PresentCollectedEffect
 
 @onready var derpy = $Derpy
+@export var presentsParent : Node3D
 
+var presents = 0
+var presentsInLevel = 0
+@onready var ui = $UI
+signal presentsUpdated
+
+var score = 0
+signal scoreUpdated
+@onready var collectibleCollectedEffect = $CollectibleCollected
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 
 func _ready():
+		presentsInLevel = presentsParent.get_child_count()
+		presentsUpdated.emit()
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func _UpdateScore(scoreToAdd):
+	score += scoreToAdd
+	collectibleCollectedEffect.play()
+	scoreUpdated.emit()
+
+func _PresentCollected():
+	presents += 1
+	presentsUpdated.emit()
+	ui._PresentsUpdated()
+	presentCollect.play()
+	print(presents)
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
@@ -39,7 +62,7 @@ func _physics_process(delta):
 	
 	
 	# Add the gravity.
-	if not is_on_floor() && not stuckOnWall:
+	if not is_on_floor():
 		wasInAir = true
 
 		if velocity.y < 0:
@@ -48,17 +71,16 @@ func _physics_process(delta):
 		if Input.is_action_pressed("jump") and velocity.y < 0:
 			velocity.y = clamp(velocity.y, HOVERFALLVELOCITY, 0)
 			
-	if is_on_floor():
+	else:
 		if wasInAir:
 			animationState.travel("Land")
 			landEffect.play()
 		wasInAir = false
 		
 	# Handle Jump.
-	if Input.is_action_just_pressed("jump") and (is_on_floor() or stuckOnWall):
+	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 		animationState.travel("Jump")
-		stuckOnWall = false
 		jumpEffect.play()
 	
 	if not is_on_floor():
@@ -66,13 +88,19 @@ func _physics_process(delta):
 			animationState.travel("Hover")
 		elif Input.is_action_just_released("jump"):
 			animationState.travel("InAir")
+
+	#/Testing out a wall jump feature that didnt make it
+	#if is_on_wall() and Input.is_action_just_pressed("jump"):
+	#	print("wall jump")
+	#	print(get_wall_normal())
+	#	velocity.x = get_wall_normal().x * 40
+	#	velocity.y = JUMP_VELOCITY
+	#/	
 	
-	if is_on_wall() and Input.is_action_just_pressed("jump"):
-		velocity.y = JUMP_VELOCITY
-		
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
+	#Handles the direction the player model faces when moving
 	#Turn right
 	if input_dir.x > 0 && input_dir.y == 0:
 		derpy.rotation_degrees.y = -90
@@ -100,21 +128,7 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-	
+	move_and_slide()
 
-	if not stuckOnWall:
-		move_and_slide()
-
-
-func _on_sticky_area_entered(body):
-	if(body.is_in_group("wall")):
-		print(body.rotation)
-		#stickEffect.play()
-		#tuckOnWall = true
-
-
-func _on_area_3d_body_exited(body):
-	if(body.is_in_group("wall")):
-		stuckOnWall = false
 
 
