@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://t6duapcw083v"]
 
-[ext_resource type="PackedScene" uid="uid://de712ldpfhm64" path="res://BlenderMeshes/player.blend" id="1_h8gjc"]
+[ext_resource type="PackedScene" uid="uid://de712ldpfhm64" path="res://BlenderMeshes/player.blend" id="1_8r3rb"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_vnmt5"]
 
@@ -12,7 +12,7 @@ angular_damp = 1.0
 shape = SubResource("SphereShape3D_vnmt5")
 disabled = true
 
-[node name="player" parent="." instance=ExtResource("1_h8gjc")]
+[node name="player" parent="." instance=ExtResource("1_8r3rb")]
 transform = Transform3D(-1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, -1, 0, 0, 0)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="."]

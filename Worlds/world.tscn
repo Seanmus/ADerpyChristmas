@@ -39,7 +39,7 @@ text = "Hold SPACE to slow your fall!"
 font = ExtResource("1_k8myh")
 font_size = 128
 
-[node name="HoverTxt2" type="Label3D" parent="."]
+[node name="PresentsTxt" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.39481, 4.028, 7.37649)
 billboard = 1
 modulate = Color(1, 0, 1, 1)
@@ -67,27 +67,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.2884, 20.755, -3.87883)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.3494, 2.93926, -8.96682)
 presentsParent = NodePath("../Presents")
 
-[node name="LeftWing" parent="Player/Derpy/RootNode" index="0"]
-transform = Transform3D(-22.0247, 8.98357e-05, 4.11459e-10, 0, -0.000128277, 44.8343, 5.58366e-05, 35.4356, 0.0001623, 0.6, 0.256785, -4.71597e-08)
-
-[node name="Sunfglasses" parent="Player/Derpy/RootNode" index="1"]
-transform = Transform3D(36.1155, -0.0231852, 1.20616e-05, -3.1186e-05, -1.16757e-05, 14.3775, -0.252127, -3.32113, -5.06295e-05, -5.21184e-08, 0.3838, -0.596165)
-
-[node name="HairTuft" parent="Player/Derpy/RootNode" index="2"]
-transform = Transform3D(-1.68556, 4.70528, 1.06049e-05, 0, -2.07935e-05, 3.5763, 2.40723, 3.29466, 7.4256e-06, 0, 0.781998, 0)
-
-[node name="LeftFoot" parent="Player/Derpy/RootNode" index="3"]
-transform = Transform3D(-0.000146044, 22.811, 5.14183e-05, 0, -8.25756e-05, 14.204, 40.3438, 8.25756e-05, 1.86134e-10, 0.2, -0.513494, -1.74846e-08)
-
-[node name="RightFoot" parent="Player/Derpy/RootNode" index="4"]
-transform = Transform3D(-0.000146044, 22.811, 5.14183e-05, 0, -8.25756e-05, 14.204, 40.3438, 8.25756e-05, 1.86134e-10, -0.2, -0.513494, 1.74846e-08)
-
-[node name="LeftWing_001" parent="Player/Derpy/RootNode" index="5"]
-transform = Transform3D(22.0247, -2.30927e-05, -1.05768e-10, 0, -0.000128276, 44.8343, -1.43531e-05, -35.4355, -0.0001623, -0.6, 0.256785, 5.77477e-08)
-
-[node name="Body_001" parent="Player/Derpy/RootNode" index="6"]
-transform = Transform3D(-16.3185, -1.53301e-12, -4.13704e-05, -1.99845e-15, 13.8185, -7.13304e-07, 4.13704e-05, -6.04026e-07, -16.3185, -5.70553e-08, 0.214111, -0.652636)
-
 [node name="Camera3D" parent="Player/Pivot/SpringArm3D" index="0"]
 current = true
 
@@ -112,8 +91,11 @@ transform = Transform3D(0.222856, 0, 0, 0, 0.222856, 0, 0, 0, 0.222856, -0.70660
 [node name="CollectibleLowLevel9" parent="MovingPlatform" instance=ExtResource("12_1gbk2")]
 transform = Transform3D(0.222856, 0, 0, 0, 0.222856, 0, 0, 0, 0.222856, -0.0159352, 1.31463, 0.799039)
 
+[node name="CollectibleHighLevel2" parent="MovingPlatform" instance=ExtResource("13_w1i37")]
+transform = Transform3D(0.222856, 0, 0, 0, 0.222856, 0, 0, 0, 0.222856, 0.0412214, 1.30217, -0.00275278)
+
 [node name="MovingPlatform2" parent="." instance=ExtResource("7_hbycc")]
-transform = Transform3D(4.48721, 0, 0, 0, 4.48721, 0, 0, 0, 4.48721, -5.878, 15, -74.001)
+transform = Transform3D(4.48721, 0, 0, 0, 4.48721, 0, 0, 0, 4.48721, -5.878, -2, -74.001)
 targetPos = Vector3(-5.878, 15, -74.001)
 waitTime = 3
 timeToTarget = 7
@@ -237,9 +219,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7134, 4.83785, -24.9901)
 [node name="CollectibleHighLevel" parent="Collectibles" instance=ExtResource("13_w1i37")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.6653, 2.24379, -15.279)
 
-[node name="CollectibleHighLevel2" parent="Collectibles" instance=ExtResource("13_w1i37")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.693, 2.8431, -25.0134)
-
 [node name="CollectibleLowLevel2" parent="Collectibles" instance=ExtResource("12_1gbk2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7134, 6.83785, -24.9901)
 
@@ -291,55 +270,55 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.7007, 9.02002, -53.4695)
 [node name="CollectibleHighLevel8" parent="Collectibles" instance=ExtResource("13_w1i37")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.8145, 15.3889, -57.4645)
 
-[node name="CollectibleLowLevel" parent="." instance=ExtResource("12_1gbk2")]
+[node name="CollectibleLowLevel13" parent="Collectibles" instance=ExtResource("12_1gbk2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96.5415, 21.8622, -44.7001)
 
-[node name="CollectibleLowLevel2" parent="." instance=ExtResource("12_1gbk2")]
+[node name="CollectibleLowLevel14" parent="Collectibles" instance=ExtResource("12_1gbk2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92.6529, 24.8622, -27.7001)
 
-[node name="CollectibleLowLevel3" parent="." instance=ExtResource("12_1gbk2")]
+[node name="CollectibleLowLevel15" parent="Collectibles" instance=ExtResource("12_1gbk2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.6118, 3.7716, -92.0045)
 
-[node name="CollectibleLowLevel4" parent="." instance=ExtResource("12_1gbk2")]
+[node name="CollectibleLowLevel16" parent="Collectibles" instance=ExtResource("12_1gbk2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.38824, 3.7716, -94.0045)
 
-[node name="CollectibleHighLevel" parent="." instance=ExtResource("13_w1i37")]
+[node name="CollectibleHighLevel9" parent="Collectibles" instance=ExtResource("13_w1i37")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.74072, 3.70036, -105.227)
 
-[node name="CollectibleLowLevel5" parent="." instance=ExtResource("12_1gbk2")]
+[node name="CollectibleLowLevel17" parent="Collectibles" instance=ExtResource("12_1gbk2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.14524, 3.67124, -84.3203)
 
-[node name="CollectibleLowLevel6" parent="." instance=ExtResource("12_1gbk2")]
+[node name="CollectibleLowLevel18" parent="Collectibles" instance=ExtResource("12_1gbk2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2186, 5.78814, -53.8381)
 
-[node name="CollectibleLowLevel7" parent="." instance=ExtResource("12_1gbk2")]
+[node name="CollectibleLowLevel19" parent="Collectibles" instance=ExtResource("12_1gbk2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.11267, 5.78814, -43.545)
 
-[node name="CollectibleLowLevel8" parent="." instance=ExtResource("12_1gbk2")]
+[node name="CollectibleLowLevel20" parent="Collectibles" instance=ExtResource("12_1gbk2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.1127, 5.78814, -50.0378)
 
-[node name="CollectibleLowLevel9" parent="." instance=ExtResource("12_1gbk2")]
+[node name="CollectibleLowLevel21" parent="Collectibles" instance=ExtResource("12_1gbk2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1459, 5.78814, -59.4932)
 
-[node name="CollectibleLowLevel10" parent="." instance=ExtResource("12_1gbk2")]
+[node name="CollectibleLowLevel22" parent="Collectibles" instance=ExtResource("12_1gbk2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.22573, 5.78814, -60.5424)
 
-[node name="CollectibleLowLevel11" parent="." instance=ExtResource("12_1gbk2")]
+[node name="CollectibleLowLevel23" parent="Collectibles" instance=ExtResource("12_1gbk2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.615446, 5.78814, -45.5424)
 
-[node name="CollectibleHighLevel2" parent="." instance=ExtResource("13_w1i37")]
+[node name="CollectibleHighLevel10" parent="Collectibles" instance=ExtResource("13_w1i37")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.56997, 5.65888, -52.4813)
 
-[node name="CollectibleLowLevel12" parent="." instance=ExtResource("12_1gbk2")]
+[node name="CollectibleLowLevel24" parent="Collectibles" instance=ExtResource("12_1gbk2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.196, 3.76649, -59.8305)
 
-[node name="CollectibleLowLevel13" parent="." instance=ExtResource("12_1gbk2")]
+[node name="CollectibleLowLevel25" parent="Collectibles" instance=ExtResource("12_1gbk2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.281, 3.76649, -37.8305)
 
-[node name="CollectibleLowLevel15" parent="." instance=ExtResource("12_1gbk2")]
+[node name="CollectibleLowLevel26" parent="Collectibles" instance=ExtResource("12_1gbk2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.281, 3.76649, -48.7412)
 
-[node name="CollectibleLowLevel14" parent="." instance=ExtResource("12_1gbk2")]
+[node name="CollectibleLowLevel27" parent="Collectibles" instance=ExtResource("12_1gbk2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.196, 3.76649, -45.8305)
 
 [editable path="Player"]

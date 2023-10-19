@@ -2,7 +2,6 @@ extends Node3D
 
 
 @export var targetPos: Vector3
-@export var movementSpeed = 10
 @onready var startPosition = position
 
 var movingTowards = true

@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://cioo4m7rbfyo7" path="res://Audio/LandSqueakReSaved.mp3" id="2_m6w0e"]
 [ext_resource type="AudioStream" uid="uid://bpi0kkuimqum1" path="res://Audio/JumpSqueak.wav" id="3_ed4i6"]
 [ext_resource type="Texture2D" uid="uid://b6gbq2av8pect" path="res://UI/PresentCrunchy.png" id="5_1a8fc"]
-[ext_resource type="Script" path="res://UI.gd" id="5_aw5mr"]
+[ext_resource type="Script" path="res://UI/UI.gd" id="5_yq0re"]
 [ext_resource type="FontFile" uid="uid://bpvljw3t441k7" path="res://UI/SigmarOne-Regular.ttf" id="6_hpwsy"]
 [ext_resource type="AudioStream" uid="uid://c8i6etkp4usnv" path="res://Audio/PresentCollected.wav" id="8_tcujn"]
 [ext_resource type="AudioStream" uid="uid://bqcgukma2h6xh" path="res://Audio/PP_Collect_Coin_1_2.wav" id="9_u5m70"]
@@ -703,9 +703,10 @@ graph_offset = Vector2(-218, 201)
 
 [sub_resource type="Theme" id="Theme_4pgsk"]
 default_font = ExtResource("6_hpwsy")
-default_font_size = 64
+default_font_size = 30
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
+floor_max_angle = 1.04894
 script = ExtResource("1_fuj54")
 
 [node name="Derpy" parent="." instance=ExtResource("2_6d2vt")]
@@ -766,11 +767,12 @@ anchor_bottom = 0.995
 offset_right = 2.0
 offset_bottom = 0.239929
 mouse_filter = 2
-script = ExtResource("5_aw5mr")
+script = ExtResource("5_yq0re")
 player = NodePath("..")
 
 [node name="PresentSprite" type="Sprite2D" parent="UI"]
-position = Vector2(1084, 61)
+position = Vector2(587, 39)
+scale = Vector2(0.66, 0.66)
 texture = ExtResource("5_1a8fc")
 
 [node name="PresentsLbl" type="Label" parent="UI"]
@@ -778,24 +780,26 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.728
 anchor_top = 0.018
-anchor_right = 0.923
-anchor_bottom = 0.171
-offset_left = -0.112061
-offset_top = -10.61
-offset_right = -0.14209
-offset_bottom = -0.295006
+anchor_right = 0.88
+anchor_bottom = 0.075
+offset_left = -0.375977
+offset_top = -10.6011
+offset_right = 0.039978
+offset_bottom = 15.162
 theme = SubResource("Theme_4pgsk")
 text = "0/3"
 
 [node name="ScoreLbl" type="Label" parent="UI"]
 layout_mode = 1
 anchors_preset = -1
+anchor_left = 0.019
 anchor_top = 0.002
-anchor_right = 0.393
+anchor_right = 0.412
 anchor_bottom = 0.171
-offset_top = -0.29
-offset_right = 0.477997
-offset_bottom = -0.294991
+offset_left = -0.198001
+offset_top = 0.0443201
+offset_right = 0.279968
+offset_bottom = 0.0393295
 theme = SubResource("Theme_4pgsk")
 text = "Score: 0"
 

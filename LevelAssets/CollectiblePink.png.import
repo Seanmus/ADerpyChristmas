@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxnwg83e2agyi"
-path.s3tc="res://.godot/imported/Collectible.png-523569cd32d20192711dd62dedad8dc8.s3tc.ctex"
+uid="uid://dn6h7lxgqv7p8"
+path.s3tc="res://.godot/imported/CollectiblePink.png-f2bff8ab807883c78d9b80e322622294.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Collectible.png"
-dest_files=["res://.godot/imported/Collectible.png-523569cd32d20192711dd62dedad8dc8.s3tc.ctex"]
+source_file="res://LevelAssets/CollectiblePink.png"
+dest_files=["res://.godot/imported/CollectiblePink.png-f2bff8ab807883c78d9b80e322622294.s3tc.ctex"]
 
 [params]
 

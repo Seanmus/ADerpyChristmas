@@ -1,0 +1,98 @@
+[gd_scene load_steps=12 format=3 uid="uid://dk8dagmlkgcr0"]
+
+[ext_resource type="PackedScene" uid="uid://c02lle0fs3pqb" path="res://LevelAssets/icicle.tscn" id="1_3coi3"]
+[ext_resource type="Script" path="res://LevelAssets/Rotator.gd" id="1_k12ke"]
+[ext_resource type="PackedScene" uid="uid://dpiwodnfpma4x" path="res://LevelAssets/TreeDecor.tscn" id="2_jkqmy"]
+[ext_resource type="PackedScene" uid="uid://dts5j7hs2xjs2" path="res://BlenderMeshes/present.fbx" id="3_45t1m"]
+[ext_resource type="PackedScene" uid="uid://d4ljevw7hy3s5" path="res://LevelAssets/snow_man.tscn" id="4_cqmvn"]
+[ext_resource type="Texture2D" uid="uid://co52o1rwjocy" path="res://UI/buttonStandard.png" id="6_gb2jn"]
+[ext_resource type="Script" path="res://Worlds/TitleUI.gd" id="6_n4h21"]
+[ext_resource type="Texture2D" uid="uid://b1dcxtyn27pyv" path="res://UI/buttonHighlight.png" id="7_k2ouu"]
+[ext_resource type="Texture2D" uid="uid://cmkqq77mhqvn4" path="res://UI/A DerpyChirstmas.png" id="9_i40lc"]
+
+[sub_resource type="Environment" id="Environment_5jvxf"]
+background_mode = 1
+background_color = Color(0.0352941, 0.0235294, 0.129412, 1)
+background_energy_multiplier = 1.93
+ambient_light_source = 2
+ambient_light_color = Color(0.933333, 1, 1, 1)
+volumetric_fog_density = 0.031
+volumetric_fog_albedo = Color(0.819608, 1, 1, 1)
+volumetric_fog_emission = Color(0.760784, 0.760784, 0.760784, 1)
+adjustment_enabled = true
+adjustment_saturation = 2.79
+
+[sub_resource type="Theme" id="Theme_v86sl"]
+
+[node name="TitleScreen" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_5jvxf")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.94834, 0.317255, 0, -0.317255, 0.94834, -3, 8.05198, 20.4421)
+
+[node name="Rotator" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.04648, 0, 0)
+script = ExtResource("1_k12ke")
+
+[node name="icicle" parent="Rotator" instance=ExtResource("1_3coi3")]
+transform = Transform3D(-5.34129, 4.66951e-07, 0, -4.66951e-07, -5.34129, 0, 0, 0, 5.34129, 0, -1.095, 0)
+
+[node name="TreeDecor" parent="Rotator/icicle" instance=ExtResource("2_jkqmy")]
+transform = Transform3D(-0.857902, -7.50002e-08, 0, 7.50002e-08, -0.857902, 0, 0, 0, 0.857902, -0.089866, -1.67489, 0)
+
+[node name="present" parent="Rotator/icicle" instance=ExtResource("3_45t1m")]
+transform = Transform3D(-0.174541, -1.63673e-08, -0.0677279, 1.52588e-08, -0.187221, 5.92096e-09, -0.0677279, 0, 0.174541, 0.154689, -0.292348, 0.815876)
+
+[node name="present2" parent="Rotator/icicle" instance=ExtResource("3_45t1m")]
+transform = Transform3D(-0.145924, -1.63673e-08, 0.117293, 1.27571e-08, -0.187221, -1.02541e-08, 0.117293, 0, 0.145924, -0.594193, -0.292348, 0.441435)
+
+[node name="present3" parent="Rotator/icicle" instance=ExtResource("3_45t1m")]
+transform = Transform3D(-0.151064, -1.63673e-08, -0.110595, 1.32064e-08, -0.187221, 9.66849e-09, -0.110595, 0, 0.151064, -0.594193, -0.292348, -0.494667)
+
+[node name="present4" parent="Rotator/icicle" instance=ExtResource("3_45t1m")]
+transform = Transform3D(-0.185021, -1.63673e-08, 0.0286163, 1.6175e-08, -0.187221, -2.50172e-09, 0.0286163, 0, 0.185021, 0.34191, -0.292348, -0.494667)
+
+[node name="snowMan" parent="Rotator/icicle" instance=ExtResource("4_cqmvn")]
+transform = Transform3D(-0.187221, -1.63673e-08, 0, 1.63673e-08, -0.187221, 0, 0, 0, 0.187221, 1.13587, -0.118676, 0.515979)
+
+[node name="snowMan2" parent="Rotator/icicle" instance=ExtResource("4_cqmvn")]
+transform = Transform3D(-0.0936103, -1.63673e-08, -0.162138, 8.18367e-09, -0.187221, 1.41745e-08, -0.162138, 0, 0.0936103, -1.45144, -0.118675, 0.669611)
+
+[node name="TitleUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_n4h21")
+
+[node name="TextureButton" type="TextureButton" parent="TitleUI"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 9.7
+anchor_top = 8.5
+anchor_right = 14.496
+anchor_bottom = 10.062
+offset_left = -3.05176e-05
+offset_right = -139.84
+offset_bottom = -42.48
+scale = Vector2(3.6896, 3.1241)
+theme = SubResource("Theme_v86sl")
+texture_normal = ExtResource("6_gb2jn")
+texture_pressed = ExtResource("7_k2ouu")
+texture_hover = ExtResource("7_k2ouu")
+
+[node name="TextureRect" type="TextureRect" parent="TitleUI"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 15.575
+anchor_bottom = 8.4
+offset_left = -3.0
+offset_bottom = -3.05176e-05
+texture = ExtResource("9_i40lc")
+
+[connection signal="pressed" from="TitleUI/TextureButton" to="TitleUI" method="_on_texture_button_pressed"]
