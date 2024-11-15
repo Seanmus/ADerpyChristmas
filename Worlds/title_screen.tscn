@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://dk8dagmlkgcr0"]
+[gd_scene load_steps=17 format=3 uid="uid://dk8dagmlkgcr0"]
 
 [ext_resource type="PackedScene" uid="uid://c02lle0fs3pqb" path="res://LevelAssets/icicle.tscn" id="1_3coi3"]
+[ext_resource type="Environment" uid="uid://c3jckxwg70qn4" path="res://Worlds/enviromentSettings.tres" id="1_fl68p"]
 [ext_resource type="Script" path="res://LevelAssets/Rotator.gd" id="1_k12ke"]
 [ext_resource type="PackedScene" uid="uid://dpiwodnfpma4x" path="res://LevelAssets/TreeDecor.tscn" id="2_jkqmy"]
 [ext_resource type="PackedScene" uid="uid://dts5j7hs2xjs2" path="res://BlenderMeshes/present.fbx" id="3_45t1m"]
@@ -9,25 +10,57 @@
 [ext_resource type="Script" path="res://Worlds/TitleUI.gd" id="6_n4h21"]
 [ext_resource type="Texture2D" uid="uid://b1dcxtyn27pyv" path="res://UI/buttonHighlight.png" id="7_k2ouu"]
 [ext_resource type="Texture2D" uid="uid://cmkqq77mhqvn4" path="res://UI/A DerpyChirstmas.png" id="9_i40lc"]
-
-[sub_resource type="Environment" id="Environment_5jvxf"]
-background_mode = 1
-background_color = Color(0.0352941, 0.0235294, 0.129412, 1)
-background_energy_multiplier = 1.93
-ambient_light_source = 2
-ambient_light_color = Color(0.933333, 1, 1, 1)
-volumetric_fog_density = 0.031
-volumetric_fog_albedo = Color(0.819608, 1, 1, 1)
-volumetric_fog_emission = Color(0.760784, 0.760784, 0.760784, 1)
-adjustment_enabled = true
-adjustment_saturation = 2.79
+[ext_resource type="Shader" path="res://UI/transition.gdshader" id="10_7l6w0"]
 
 [sub_resource type="Theme" id="Theme_v86sl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_732is"]
+shader = ExtResource("10_7l6w0")
+shader_parameter/circle_size = 1.05
+shader_parameter/screen_width = 600.0
+shader_parameter/screen_height = 600.0
+
+[sub_resource type="Animation" id="Animation_kif3x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:material:shader_parameter/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.05]
+}
+
+[sub_resource type="Animation" id="Animation_fh4p0"]
+resource_name = "transition"
+length = 2.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:material:shader_parameter/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.05, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wd6kw"]
+_data = {
+"RESET": SubResource("Animation_kif3x"),
+"transition": SubResource("Animation_fh4p0")
+}
 
 [node name="TitleScreen" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_5jvxf")
+environment = ExtResource("1_fl68p")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.94834, 0.317255, 0, -0.317255, 0.94834, -3, 8.05198, 20.4421)
@@ -95,4 +128,23 @@ offset_left = -3.0
 offset_bottom = -3.05176e-05
 texture = ExtResource("9_i40lc")
 
+[node name="Transition" type="ColorRect" parent="TitleUI"]
+material = SubResource("ShaderMaterial_732is")
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 16.025
+anchor_bottom = 12.025
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TitleUI/Transition"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_wd6kw")
+}
+
 [connection signal="pressed" from="TitleUI/TextureButton" to="TitleUI" method="_on_texture_button_pressed"]
+[connection signal="animation_finished" from="TitleUI/Transition/AnimationPlayer" to="TitleUI" method="transition_animation_finished"]

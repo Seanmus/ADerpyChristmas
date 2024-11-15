@@ -63,7 +63,7 @@ uniform sampler2D fresnel_texture: hint_default_white;
 group_uniforms;
 
 varying vec3 SPECULAR_COLOR;
-varying float SPECULAR_AMOUNT;
+varying float SPECULAR_VALUE;
 varying vec3 FRESNEL_COLOR;
 varying float FRESNEL_AMOUNT;
 
@@ -93,7 +93,7 @@ void fragment() {
 #endif
 	
 	SPECULAR_COLOR = specular.rgb * texture(specular_texture, UV).rgb;
-	SPECULAR_AMOUNT = specular.a * texture(specular_texture, UV).a;
+	SPECULAR_VALUE = specular.a * texture(specular_texture, UV).a;
 	FRESNEL_COLOR = fresnel.rgb * texture(fresnel_texture, UV).rgb;
 	FRESNEL_AMOUNT = fresnel.a * texture(fresnel_texture, UV).a;
 	

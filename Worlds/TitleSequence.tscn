@@ -1,0 +1,98 @@
+[gd_scene load_steps=19 format=3 uid="uid://cs0thsuvmpvrs"]
+
+[ext_resource type="Script" path="res://Worlds/TitleSequence.gd" id="1_bfkke"]
+[ext_resource type="Texture2D" uid="uid://b4yq6adjvq2w0" path="res://UI/TitleSequenceImages/1.png" id="2_vck28"]
+[ext_resource type="Texture2D" uid="uid://os1jl5asl4n1" path="res://UI/TitleSequenceImages/2.png" id="3_2gtvk"]
+[ext_resource type="Texture2D" uid="uid://bcd4eew2yvhd2" path="res://UI/TitleSequenceImages/3.png" id="4_xbnro"]
+[ext_resource type="Texture2D" uid="uid://cengkam3u228o" path="res://UI/TitleSequenceImages/4.png" id="5_7kl2i"]
+[ext_resource type="Texture2D" uid="uid://br0yo8o657uvn" path="res://UI/TitleSequenceImages/5.png" id="6_ew7sc"]
+[ext_resource type="Texture2D" uid="uid://cjbrdupcmj1hj" path="res://UI/TitleSequenceImages/6.png" id="7_6ce28"]
+[ext_resource type="Texture2D" uid="uid://bfgjtwemut6cm" path="res://UI/TitleSequenceImages/7.png" id="8_ej5yq"]
+[ext_resource type="Texture2D" uid="uid://b7mbhmv2cei30" path="res://UI/TitleSequenceImages/8.png" id="9_fveao"]
+[ext_resource type="Texture2D" uid="uid://cu5gpjmilxhh0" path="res://UI/TitleSequenceImages/9.png" id="10_lern8"]
+[ext_resource type="Texture2D" uid="uid://0w8d4x2wc5ce" path="res://UI/TitleSequenceImages/10.png" id="11_w5c56"]
+[ext_resource type="Texture2D" uid="uid://ca3pls8gr18xp" path="res://UI/TitleSequenceImages/11.png" id="12_fev5d"]
+[ext_resource type="Texture2D" uid="uid://dgdij03orca86" path="res://UI/TitleSequenceImages/12.png" id="13_n7uk7"]
+[ext_resource type="FontFile" uid="uid://bpvljw3t441k7" path="res://UI/SigmarOne-Regular.ttf" id="14_t7ccm"]
+
+[sub_resource type="Animation" id="Animation_1rlir"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_vck28")]
+}
+
+[sub_resource type="Animation" id="Animation_ah251"]
+resource_name = "title_Sequence"
+length = 36.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_vck28"), ExtResource("3_2gtvk"), ExtResource("4_xbnro"), ExtResource("5_7kl2i"), ExtResource("6_ew7sc"), ExtResource("7_6ce28"), ExtResource("8_ej5yq"), ExtResource("9_fveao"), ExtResource("10_lern8"), ExtResource("11_w5c56"), ExtResource("12_fev5d"), ExtResource("13_n7uk7")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1247w"]
+_data = {
+"RESET": SubResource("Animation_1rlir"),
+"title_Sequence": SubResource("Animation_ah251")
+}
+
+[sub_resource type="Theme" id="Theme_7kp4y"]
+
+[node name="IntroSequence" type="Node2D"]
+script = ExtResource("1_bfkke")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleCard" type="TextureRect" parent="Control"]
+texture_filter = 1
+layout_mode = 1
+offset_right = 643.0
+offset_bottom = 510.0
+scale = Vector2(1, 0.941608)
+texture = ExtResource("2_vck28")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/TitleCard"]
+autoplay = "title_Sequence"
+libraries = {
+"": SubResource("AnimationLibrary_1247w")
+}
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 406.0
+offset_top = 1.0
+offset_right = 643.0
+offset_bottom = 45.0
+grow_horizontal = 0
+theme = SubResource("Theme_7kp4y")
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("14_t7ccm")
+theme_override_font_sizes/font_size = 18
+text = "Press Jump To Skip..."
+
+[connection signal="animation_finished" from="Control/TitleCard/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

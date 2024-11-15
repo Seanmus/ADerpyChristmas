@@ -1,7 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://bdyyk6uwj022r"]
+[gd_scene load_steps=7 format=3 uid="uid://bdyyk6uwj022r"]
 
 [ext_resource type="PackedScene" uid="uid://dts5j7hs2xjs2" path="res://BlenderMeshes/present.fbx" id="1_uppu2"]
 [ext_resource type="Script" path="res://LevelAssets/present.gd" id="2_pjacp"]
+[ext_resource type="Shader" path="res://outline.gdshader" id="3_sffnt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ytrn"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.515625, 0.757813, 0.289063, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yjhml"]
+render_priority = 0
+next_pass = SubResource("StandardMaterial3D_5ytrn")
+shader = ExtResource("3_sffnt")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_yovqs"]
 radius = 0.0127736
@@ -11,6 +21,9 @@ script = ExtResource("2_pjacp")
 
 [node name="RootNode" parent="." index="0"]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+
+[node name="Cube" parent="RootNode" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_yjhml")
 
 [node name="Area3D" type="Area3D" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.467665, 0)

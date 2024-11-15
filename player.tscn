@@ -1,8 +1,9 @@
-[gd_scene load_steps=34 format=3 uid="uid://bleqbt5f1cfj2"]
+[gd_scene load_steps=39 format=3 uid="uid://bleqbt5f1cfj2"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_fuj54"]
 [ext_resource type="PackedScene" uid="uid://d4alr58co4efe" path="res://BlenderMeshes/Derpy.fbx" id="2_6d2vt"]
 [ext_resource type="AudioStream" uid="uid://cioo4m7rbfyo7" path="res://Audio/LandSqueakReSaved.mp3" id="2_m6w0e"]
+[ext_resource type="Material" uid="uid://rkppha3v4vdb" path="res://Derpy.tres" id="3_015qe"]
 [ext_resource type="AudioStream" uid="uid://bpi0kkuimqum1" path="res://Audio/JumpSqueak.wav" id="3_ed4i6"]
 [ext_resource type="Texture2D" uid="uid://b6gbq2av8pect" path="res://UI/PresentCrunchy.png" id="5_1a8fc"]
 [ext_resource type="Script" path="res://UI/UI.gd" id="5_yq0re"]
@@ -465,6 +466,30 @@ tracks/16/keys = {
 "update": 0,
 "values": [Vector3(1, 1, 1)]
 }
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("UI/PresentSprite:rotation")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("PresentCollectedEffect:playing")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_7deyc"]
 resource_name = "Walk"
@@ -697,13 +722,78 @@ states/Land/position = Vector2(703, 377)
 states/Walk/node = SubResource("AnimationNodeAnimation_3eyxj")
 states/Walk/position = Vector2(493, 168)
 transitions = ["Start", "Walk", SubResource("AnimationNodeStateMachineTransition_lsbma"), "Walk", "Jump", SubResource("AnimationNodeStateMachineTransition_0a6jd"), "Land", "Walk", SubResource("AnimationNodeStateMachineTransition_37vwb"), "Jump", "InAir", SubResource("AnimationNodeStateMachineTransition_2vkgr"), "InAir", "Land", SubResource("AnimationNodeStateMachineTransition_y4xjk"), "InAir", "Hover", SubResource("AnimationNodeStateMachineTransition_ww54o"), "Hover", "Land", SubResource("AnimationNodeStateMachineTransition_rxvs8"), "Hover", "InAir", SubResource("AnimationNodeStateMachineTransition_7y4yr")]
-graph_offset = Vector2(-218, 201)
+graph_offset = Vector2(-82, 127)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5ax8n"]
 
 [sub_resource type="Theme" id="Theme_4pgsk"]
 default_font = ExtResource("6_hpwsy")
 default_font_size = 30
+
+[sub_resource type="Animation" id="Animation_4oytq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PresentSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.66, 0.66)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PresentSprite:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_1le4e"]
+resource_name = "presentCollected"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PresentSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.66, 0.66), Vector2(0.91, 0.91), Vector2(0.66, 0.66)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PresentSprite:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.172788, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_1x077"]
+resource_name = "scoreIncreased"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xnidj"]
+_data = {
+"RESET": SubResource("Animation_4oytq"),
+"presentCollected": SubResource("Animation_1le4e"),
+"scoreIncreased": SubResource("Animation_1x077")
+}
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 floor_max_angle = 1.04894
@@ -713,6 +803,7 @@ script = ExtResource("1_fuj54")
 
 [node name="LeftWing" parent="Derpy/RootNode" index="0"]
 transform = Transform3D(-22.0247, 8.98357e-05, 4.11459e-10, 0, -0.000128277, 44.8343, 5.58366e-05, 35.4356, 0.0001623, 0.6, 0.256785, -4.71597e-08)
+surface_material_override/0 = ExtResource("3_015qe")
 
 [node name="Sunfglasses" parent="Derpy/RootNode" index="1"]
 transform = Transform3D(36.1155, -0.0231852, 1.20616e-05, -3.1186e-05, -1.16757e-05, 14.3775, -0.252127, -3.32113, -5.06295e-05, -5.21184e-08, 0.3838, -0.596165)
@@ -728,15 +819,19 @@ transform = Transform3D(-0.000146044, 22.811, 5.14183e-05, 0, -8.25756e-05, 14.2
 
 [node name="LeftWing_001" parent="Derpy/RootNode" index="5"]
 transform = Transform3D(22.0247, -2.30927e-05, -1.05768e-10, 0, -0.000128276, 44.8343, -1.43531e-05, -35.4355, -0.0001623, -0.6, 0.256785, 5.77477e-08)
+surface_material_override/0 = ExtResource("3_015qe")
 
 [node name="Body_001" parent="Derpy/RootNode" index="6"]
 transform = Transform3D(-16.3185, -1.53301e-12, -4.13704e-05, -1.99845e-15, 13.8185, -7.13304e-07, 4.13704e-05, -6.04026e-07, -16.3185, -5.70553e-08, 0.214111, -0.652636)
+surface_material_override/0 = ExtResource("3_015qe")
 
 [node name="LandEffect" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_m6w0e")
 
 [node name="JumpEffect" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_ed4i6")
+volume_db = -3.692
+pitch_scale = 0.93
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_lgsit")
@@ -771,22 +866,23 @@ script = ExtResource("5_yq0re")
 player = NodePath("..")
 
 [node name="PresentSprite" type="Sprite2D" parent="UI"]
-position = Vector2(587, 39)
+position = Vector2(575, 53)
 scale = Vector2(0.66, 0.66)
 texture = ExtResource("5_1a8fc")
 
 [node name="PresentsLbl" type="Label" parent="UI"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.728
-anchor_top = 0.018
-anchor_right = 0.88
-anchor_bottom = 0.075
-offset_left = -0.375977
-offset_top = -10.6011
-offset_right = 0.039978
-offset_bottom = 15.162
+anchor_left = 0.846
+anchor_top = 0.186
+anchor_right = 1.0
+anchor_bottom = 0.297
+offset_left = 0.867981
+offset_top = 0.121773
+offset_bottom = 0.0815277
 theme = SubResource("Theme_4pgsk")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
 text = "0/3"
 
 [node name="ScoreLbl" type="Label" parent="UI"]
@@ -801,7 +897,14 @@ offset_top = 0.0443201
 offset_right = 0.279968
 offset_bottom = 0.0393295
 theme = SubResource("Theme_4pgsk")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
 text = "Score: 0"
+
+[node name="PresentCollectedAnim" type="AnimationPlayer" parent="UI"]
+libraries = {
+"": SubResource("AnimationLibrary_xnidj")
+}
 
 [node name="PresentCollectedEffect" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_tcujn")

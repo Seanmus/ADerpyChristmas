@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=3 uid="uid://dyxilfmfjg3m1"]
+
+[ext_resource type="PackedScene" uid="uid://c02lle0fs3pqb" path="res://LevelAssets/icicle.tscn" id="1_sk5aw"]
+[ext_resource type="PackedScene" uid="uid://dpiwodnfpma4x" path="res://LevelAssets/TreeDecor.tscn" id="2_g0m0m"]
+[ext_resource type="PackedScene" uid="uid://dts5j7hs2xjs2" path="res://BlenderMeshes/present.fbx" id="3_q18en"]
+[ext_resource type="PackedScene" uid="uid://d4alr58co4efe" path="res://BlenderMeshes/Derpy.fbx" id="4_un114"]
+[ext_resource type="PackedScene" uid="uid://d4ljevw7hy3s5" path="res://LevelAssets/snow_man.tscn" id="5_e5msa"]
+[ext_resource type="PackedScene" uid="uid://cq4c3bdnjwlgw" path="res://BlenderMeshes/snowManEvil.fbx" id="6_6v43r"]
+
+[sub_resource type="Environment" id="Environment_5jvxf"]
+background_mode = 1
+background_color = Color(0.0352941, 0.0235294, 0.129412, 1)
+background_energy_multiplier = 1.93
+ambient_light_source = 2
+ambient_light_color = Color(0.933333, 1, 1, 1)
+volumetric_fog_density = 0.031
+volumetric_fog_albedo = Color(0.819608, 1, 1, 1)
+volumetric_fog_emission = Color(0.760784, 0.760784, 0.760784, 1)
+adjustment_enabled = true
+adjustment_saturation = 2.79
+
+[node name="TitleScreen" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_5jvxf")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.182235, -0.182558, -0.966159, 0, 0.982613, -0.185667, 0.983255, -0.033835, -0.179066, -4.75294, 1.96637, 8.42732)
+
+[node name="Rotator" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.04648, 0, 0)
+
+[node name="icicle" parent="Rotator" instance=ExtResource("1_sk5aw")]
+transform = Transform3D(-5.34129, 4.66951e-07, 0, -4.66951e-07, -5.34129, 0, 0, 0, 5.34129, 0, -1.095, 0)
+
+[node name="TreeDecor" parent="Rotator/icicle" instance=ExtResource("2_g0m0m")]
+transform = Transform3D(-0.857902, -7.50002e-08, 0, 7.50002e-08, -0.857902, 0, 0, 0, 0.857902, -0.0898659, -1.67489, -0.855526)
+
+[node name="present" parent="Rotator/icicle" instance=ExtResource("3_q18en")]
+transform = Transform3D(-0.0346269, -7.50381e-09, -0.0785393, 3.02717e-09, -0.085834, 6.86612e-09, -0.0785393, -3.88371e-16, 0.0346269, 0.726262, -0.292348, 1.16171)
+
+[node name="present2" parent="Rotator/icicle" instance=ExtResource("3_q18en")]
+transform = Transform3D(-0.145924, -1.63673e-08, 0.117293, 1.27571e-08, -0.187221, -1.02541e-08, 0.117293, 0, 0.145924, -0.594193, -0.292348, 0.441435)
+
+[node name="present3" parent="Rotator/icicle" instance=ExtResource("3_q18en")]
+transform = Transform3D(-0.151064, -1.63673e-08, -0.110595, 1.32064e-08, -0.187221, 9.66849e-09, -0.110595, 0, 0.151064, -0.594193, -0.292348, -0.494667)
+
+[node name="present4" parent="Rotator/icicle" instance=ExtResource("3_q18en")]
+transform = Transform3D(-0.185021, -1.63673e-08, 0.0286163, 1.6175e-08, -0.187221, -2.50172e-09, 0.0286163, 0, 0.185021, 0.34191, -0.292348, -0.494667)
+
+[node name="Derpy" parent="." instance=ExtResource("4_un114")]
+transform = Transform3D(-0.572833, 0, -0.819672, 0, 1, 0, 0.819672, 0, -0.572833, -7.97656, 0.111197, 5.47739)
+
+[node name="LeftWing" parent="Derpy/RootNode" index="0"]
+transform = Transform3D(-21.4594, 1.07288e-06, 10.0924, 0.442708, -35.294, 3.9007, 4.93806, 3.16419, 43.5091, 0.514372, 0.223691, -0.369138)
+
+[node name="LeftWing_001" parent="Derpy/RootNode" index="5"]
+transform = Transform3D(20.6159, 2.98023e-06, -15.7775, -0.841367, 35.2261, -4.55565, 7.70483, 3.84668, 41.7185, -0.424599, 0.29353, -0.336493)
+
+[node name="snowMan" parent="." instance=ExtResource("5_e5msa")]
+transform = Transform3D(-0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, -0.258819, -1.16844, 0.122748, 9.0088)
+visible = false
+
+[node name="face" parent="snowMan/RootNode" index="2"]
+transform = Transform3D(79.1589, -3.8147e-06, 4.76837e-07, -2.84217e-14, 17.7423, 77.145, -3.8147e-06, -77.145, 17.7423, 0, 2.63213, 0)
+
+[node name="LeftArm" parent="snowMan/RootNode" index="3"]
+transform = Transform3D(-2.13611, -3.0815, 17.1001, -6.57593, -7.07263, -6.61081, 7.87963, -6.73782, -0.88132, -0.762597, 1.76155, 2.38419e-07)
+
+[node name="RightArm" parent="snowMan/RootNode" index="4"]
+transform = Transform3D(-4.2196, -2.79281, -16.4263, 9.5843, -0.458539, -7.4779, 0.594504, -12.4302, 3.9665, 0.872168, 1.76155, 9.53674e-07)
+
+[node name="snowManEvil" parent="." instance=ExtResource("6_6v43r")]
+transform = Transform3D(-0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, -0.258819, -1.11997, 0.100489, 9.00994)
+
+[node name="face" parent="snowManEvil/RootNode" index="2"]
+transform = Transform3D(79.1571, -0.473236, -0.260682, 0.351587, 16.1178, 77.4999, -0.410242, -77.4993, 16.1195, 0, 2.63213, 0)
+
+[editable path="Derpy"]
+[editable path="snowMan"]
+[editable path="snowManEvil"]

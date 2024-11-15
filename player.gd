@@ -6,6 +6,7 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 6
 const HOVERFALLVELOCITY = -2.5
 var mouse_sensitivty = 0.002
+var controller_sensitivity = 0.02
 var wasInAir
 
 @onready var spawnPos = position
@@ -32,6 +33,7 @@ signal scoreUpdated
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+var won = false
 
 func _ready():
 		presentsInLevel = presentsParent.get_child_count()
@@ -56,7 +58,16 @@ func _unhandled_input(event):
 		$Pivot.rotate_x(-event.relative.y * mouse_sensitivty)
 		$Pivot.rotation.x = clamp($Pivot.rotation.x, -0.9, 0)
 
+func _process(delta):
+	if Input.is_action_just_pressed("exit"):
+		get_tree().change_scene_to_file("res://Worlds/title_screen.tscn")
+
+
 func _physics_process(delta):
+	
+	if won:
+		return
+		
 	if position.y < -20:
 		position = spawnPos
 	
@@ -97,31 +108,42 @@ func _physics_process(delta):
 	#	velocity.y = JUMP_VELOCITY
 	#/	
 	
+	var cameraInput = Input.get_vector("look_left", "look_right", "look_up", "look_down")
+	if cameraInput:
+		rotate_y(-cameraInput.x * controller_sensitivity)
+		$Pivot.rotate_x(-cameraInput.y * controller_sensitivity)
+		$Pivot.rotation.x = clamp($Pivot.rotation.x, -0.9, -0.1)
+	
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	#Handles the direction the player model faces when moving
 	#Turn right
-	if input_dir.x > 0 && input_dir.y == 0:
+	if input_dir.x > 0 && abs(input_dir.y) <= 0.35:
 		derpy.rotation_degrees.y = -90
-	#Turn right forward	
-	if input_dir.x > 0 && input_dir.y < 0:
-		derpy.rotation_degrees.y = -45
+	elif input_dir.y < 0 && abs(input_dir.x) <= 0.35:
+		derpy.rotation_degrees.y = 0
+	elif input_dir.y > 0 && abs(input_dir.x) <= 0.35:
+		derpy.rotation_degrees.y = 180
 	#Turn left	
-	if input_dir.x < 0 && input_dir.y == 0:
+	elif input_dir.x < 0 && abs(input_dir.y) <= 0.35:
 		derpy.rotation_degrees.y = 90
 	#Turn left forward	
-	if input_dir.x < 0 && input_dir.y < 0:
-		derpy.rotation_degrees.y = 45	
-	if input_dir.y < 0 && input_dir.x == 0:
-		derpy.rotation_degrees.y = 0	
-	if input_dir.x < 0 && input_dir.y > 0:
-		derpy.rotation_degrees.y = 135		
-	if input_dir.y > 0 && input_dir.x == 0:
-		derpy.rotation_degrees.y = 180
-	if input_dir.x > 0 && input_dir.y > 0:
-		derpy.rotation_degrees.y = 225
-	
+	elif input_dir.x < 0 && input_dir.y < 0:
+		derpy.rotation_degrees.y = 45
+	#
+	#Turn right forward	
+	elif input_dir.x > 0 && input_dir.y < 0:
+		derpy.rotation_degrees.y = -45	
+
+		
+	elif input_dir.x < 0 && input_dir.y > 0:
+		derpy.rotation_degrees.y = 135	
+			
+
+	elif input_dir.x > 0 && input_dir.y > 0:
+		derpy.rotation_degrees.y = 225	
+		
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
@@ -129,6 +151,4 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	move_and_slide()
-
-
 

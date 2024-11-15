@@ -60,8 +60,17 @@ transform = Transform3D(36.1155, -0.0231852, 1.20616e-05, -3.1186e-05, -1.16757e
 [node name="HairTuft" parent="Player/Derpy/RootNode" index="2"]
 transform = Transform3D(-1.68556, 4.70528, 1.06049e-05, 0, -2.07935e-05, 3.5763, 2.40723, 3.29466, 7.4256e-06, 0, 0.781998, 0)
 
+[node name="LeftFoot" parent="Player/Derpy/RootNode" index="3"]
+transform = Transform3D(-0.000146044, 22.811, 5.14183e-05, 0, -8.25756e-05, 14.204, 40.3438, 8.25756e-05, 1.86134e-10, 0.2, -0.513494, -1.74846e-08)
+
+[node name="RightFoot" parent="Player/Derpy/RootNode" index="4"]
+transform = Transform3D(-0.000146044, 22.811, 5.14183e-05, 0, -8.25756e-05, 14.204, 40.3438, 8.25756e-05, 1.86134e-10, -0.2, -0.513494, 1.74846e-08)
+
+[node name="LeftWing_001" parent="Player/Derpy/RootNode" index="5"]
+transform = Transform3D(22.0247, -2.30927e-05, -1.05768e-10, 0, -0.000128276, 44.8343, -1.43531e-05, -35.4355, -0.0001623, -0.6, 0.256785, 5.77477e-08)
+
 [node name="Body_001" parent="Player/Derpy/RootNode" index="6"]
-transform = Transform3D(-16.3185, -1.53301e-12, -4.13704e-05, -1.99844e-15, 13.8185, -7.13304e-07, 4.13704e-05, -6.04026e-07, -16.3185, -5.70553e-08, 0.214111, -0.652636)
+transform = Transform3D(-16.3185, -1.53301e-12, -4.13704e-05, -1.99845e-15, 13.8185, -7.13304e-07, 4.13704e-05, -6.04026e-07, -16.3185, -5.70553e-08, 0.214111, -0.652636)
 
 [node name="Camera3D" parent="Player/Pivot/SpringArm3D" index="0"]
 current = true

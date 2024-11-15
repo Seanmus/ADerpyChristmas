@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=3 uid="uid://cmypq8571n4r"]
+
+[ext_resource type="PackedScene" uid="uid://c02lle0fs3pqb" path="res://LevelAssets/icicle.tscn" id="1_3lpwj"]
+[ext_resource type="PackedScene" uid="uid://dpiwodnfpma4x" path="res://LevelAssets/TreeDecor.tscn" id="2_31l0x"]
+[ext_resource type="PackedScene" uid="uid://dts5j7hs2xjs2" path="res://BlenderMeshes/present.fbx" id="3_jjyd2"]
+[ext_resource type="PackedScene" uid="uid://d4alr58co4efe" path="res://BlenderMeshes/Derpy.fbx" id="4_ylw7v"]
+[ext_resource type="Material" uid="uid://rkppha3v4vdb" path="res://Derpy.tres" id="5_xxat8"]
+
+[sub_resource type="Environment" id="Environment_5jvxf"]
+background_mode = 1
+background_color = Color(0.0352941, 0.0235294, 0.129412, 1)
+background_energy_multiplier = 1.93
+ambient_light_source = 2
+ambient_light_color = Color(0.933333, 1, 1, 1)
+volumetric_fog_density = 0.031
+volumetric_fog_albedo = Color(0.819608, 1, 1, 1)
+volumetric_fog_emission = Color(0.760784, 0.760784, 0.760784, 1)
+adjustment_enabled = true
+adjustment_saturation = 2.79
+
+[node name="TitleScreen" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_5jvxf")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.62388, -0.220656, 0.749724, 0, 0.959314, 0.282341, -0.78152, -0.176147, 0.598496, -4.90119, 1.3307, 7.93239)
+
+[node name="Rotator" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.04648, 0, 0)
+
+[node name="icicle" parent="Rotator" instance=ExtResource("1_3lpwj")]
+transform = Transform3D(-5.34129, 4.66951e-07, 0, -4.66951e-07, -5.34129, 0, 0, 0, 5.34129, 0, -1.095, 0)
+
+[node name="TreeDecor" parent="Rotator/icicle" instance=ExtResource("2_31l0x")]
+transform = Transform3D(-0.857902, -7.50002e-08, 0, 7.50002e-08, -0.857902, 0, 0, 0, 0.857902, -0.089866, -1.67489, 0)
+
+[node name="present" parent="Rotator/icicle" instance=ExtResource("3_jjyd2")]
+transform = Transform3D(-0.0346269, -7.50381e-09, -0.0785393, 3.02717e-09, -0.085834, 6.86612e-09, -0.0785393, -3.88371e-16, 0.0346269, 0.726262, -0.616861, 1.16171)
+
+[node name="present2" parent="Rotator/icicle" instance=ExtResource("3_jjyd2")]
+transform = Transform3D(-0.145924, -1.63673e-08, 0.117293, 1.27571e-08, -0.187221, -1.02541e-08, 0.117293, 0, 0.145924, -0.594193, -0.292348, 0.441435)
+
+[node name="present3" parent="Rotator/icicle" instance=ExtResource("3_jjyd2")]
+transform = Transform3D(-0.151064, -1.63673e-08, -0.110595, 1.32064e-08, -0.187221, 9.66849e-09, -0.110595, 0, 0.151064, -0.594193, -0.292348, -0.494667)
+
+[node name="present4" parent="Rotator/icicle" instance=ExtResource("3_jjyd2")]
+transform = Transform3D(-0.185021, -1.63673e-08, 0.0286163, 1.6175e-08, -0.187221, -2.50172e-09, 0.0286163, 0, 0.185021, 0.34191, -0.292348, -0.494667)
+
+[node name="Derpy" parent="." instance=ExtResource("4_ylw7v")]
+transform = Transform3D(-0.572833, 0, -0.819672, 0, 1, 0, 0.819672, 0, -0.572833, -7.97656, 0.111197, 5.47739)
+
+[node name="LeftWing" parent="Derpy/RootNode" index="0"]
+transform = Transform3D(-21.4594, -7.97618, 0.117289, 0.442708, -3.49302, -44.6068, 4.93806, -34.3491, 4.50892, 0.514373, 0.223691, -0.369138)
+surface_material_override/0 = ExtResource("5_xxat8")
+
+[node name="Sunfglasses" parent="Derpy/RootNode" index="1"]
+transform = Transform3D(36.1164, -2.38419e-07, 4.76837e-07, -1.13687e-13, 0.76015, 13.9958, -5.72205e-06, -3.23305, 3.29068, -9.53674e-07, 0.500055, -0.568831)
+
+[node name="LeftWing_001" parent="Derpy/RootNode" index="5"]
+transform = Transform3D(21.6713, -6.01988, 2.44677, 2.57701, 13.5853, -41.0749, 2.96707, 32.1695, 17.804, -0.4246, 0.29353, -0.336492)
+surface_material_override/0 = ExtResource("5_xxat8")
+
+[node name="Body_001" parent="Derpy/RootNode" index="6"]
+surface_material_override/0 = ExtResource("5_xxat8")
+
+[editable path="Derpy"]
